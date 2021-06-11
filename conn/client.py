@@ -1,20 +1,20 @@
 import socket
 
 host = '192.168.1.100'
-port = 9999
+port = 5555
 
-socket_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socket_client.connect((host, port))
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect((host, port))
 
 while True:
-    mensaje = input(' > ')
-    socket_client.send(mensaje.encode())
-    datos = socket_client.recv(2048).decode()
+  message = input(' > ')
+  client_socket.send(message.encode())
+  data = client_socket.recv(2048).decode()
 
-    if datos == 'close_conn':
-        socket_client.close()
-        break
+  if data == 'close_conn':
+    client_socket.close()
+    break
 
-    print('Informacion del servidor:', datos)
+  print('Server info:', data)
 
-socket_client.close()
+client_socket.close()
