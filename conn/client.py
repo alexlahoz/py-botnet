@@ -16,5 +16,7 @@ while True:
     break
 
   print('Server info:', data)
+  client_socket.close()
+  break
 
 client_socket.close()
