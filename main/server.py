@@ -1,7 +1,4 @@
-import socket
-import time
-import os
-import sys
+import socket, time, os, sys
 
 class Server():
   def __init__(self, host, port):
@@ -107,7 +104,6 @@ class Server():
       # else:
       #   print('No se recibio el comando esperado',)
       #   conn.send('El comando recibido no existe'.encode())
-
 
 server = Server('192.168.1.100', 5555)
 server.start_server()
