@@ -12,10 +12,13 @@ COLORS = {
   'cyan':'\033[36m[CYAN]\033[0m'
 }
 
-# print(COLORS['grey'])
+class Decorator():
+  def __init__(self, selected_color, text):
+    self.selected_color = selected_color
+    self.text = text
 
-# def set_color():
-#   pass
+  def set_color(self, selected_color):
+    pass
 
-# for n in range(len(COLORS)):
-#   print(COLORS[n])
+  def set_text(self, text):
+    pass
