@@ -1,5 +1,4 @@
 import os
-
 os.system('clear')
 
 COLORS = {
@@ -12,13 +11,16 @@ COLORS = {
   'cyan':'\033[36m[CYAN]\033[0m'
 }
 
-class Decorator():
-  def __init__(self, selected_color, text):
-    self.selected_color = selected_color
+class SetColor():
+  def __init__(self):
+    self.text = ""
+    self.grey = f'\033[30m {self.text} \033[0m'
+
+  def set_grey(self, text):
+    # return f'\033[30m {text} \033[0m'
     self.text = text
+    return self.grey
 
-  def set_color(self, selected_color):
-    pass
+grey = SetColor()
 
-  def set_text(self, text):
-    pass
+print(grey.set_grey("hi!"))
