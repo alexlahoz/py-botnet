@@ -1,3 +1,4 @@
+from main.decorator import Decorator
 import socket, time, os, sys
 
 class Server():
@@ -11,7 +12,8 @@ class Server():
     server_socket.bind((self.host, self.port))
     server_socket.listen(5)
     os.system('clear')
-    print("\033[34m[INFO]\033[0m", "Server started on:", "\033[0m \033[31m", "Host:", self.host, "\033[35m", "Port:", self.port, "\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m")
+    print(decorate('grey', self.host))
+    # print("\033[34m[INFO]\033[0m", "Server started on:", "\033[0m \033[31m", "Host:", self.host, "\033[35m", "Port:", self.port, "\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m")
     time.sleep(2)
     self.connections_handler(server_socket)
 

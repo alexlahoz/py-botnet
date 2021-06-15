@@ -11,16 +11,19 @@ COLORS = {
   'cyan':'\033[36m[CYAN]\033[0m'
 }
 
-class SetColor():
-  def __init__(self):
-    self.text = ""
-    self.grey = f'\033[30m {self.text} \033[0m'
+class Decorator():
+  def decorate(self, color, text):
+    colors = {
+      'grey':'\033[30m{text}\033[0m',
+      'red':'\033[31m{text}\033[0m',
+      'green':'\033[32m{text}\033[0m',
+      'brown':'\033[33m{text}\033[0m',
+      'blue':'\033[34m{text}\033[0m',
+      'purple':'\033[35m{text}\033[0m',
+      'cyan':'\033[36m{text}\033[0m'
+    }
+    return colors[color]
 
-  def set_grey(self, text):
-    # return f'\033[30m {text} \033[0m'
-    self.text = text
-    return self.grey
 
-grey = SetColor()
-
-print(grey.set_grey("hi!"))
+a = Decorator()
+print(a.decorate('grey', 'hola'))
