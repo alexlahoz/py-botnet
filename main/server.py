@@ -1,4 +1,4 @@
-from main.decorator import Decorator
+from decorator import Decorator
 import socket, time, os, sys
 
 class Server():
@@ -6,19 +6,24 @@ class Server():
     self.host = host
     self.port = port
     self.connections = []
+    self.decorate = Decorator().decorate
 
   def start_server(self):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((self.host, self.port))
     server_socket.listen(5)
     os.system('clear')
-    print(decorate('grey', self.host))
-    # print("\033[34m[INFO]\033[0m", "Server started on:", "\033[0m \033[31m", "Host:", self.host, "\033[35m", "Port:", self.port, "\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m")
+    print(
+      self.decorate('cyan', '[INFO]'), 'Server started on',
+      self.decorate('blue', 'Host:'), self.decorate('purple', self.host),
+      self.decorate('blue', 'Port:'), self.decorate('purple', self.port)
+      # "\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m"
+    )
     time.sleep(2)
     self.connections_handler(server_socket)
 
   def connections_handler(self, server_socket):
-    # self.connection_receiver()
+    self.connection_receiver()
 
     while True:
       break
@@ -30,48 +35,48 @@ class Server():
       conn.send('Command feedback: '.encode())
 
   def connection_receiver(self):
-    for i in range(1):
+    for i in range(5):
       i += 1
       os.system('clear')
 
       sys.stdout.write('\033[34m[*~*]\033[0m Waiting for connections \033[34m[*~*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*\*]\033[0m Waiting for connections \033[34m[*\*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*|*]\033[0m Waiting for connections \033[34m[*|*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*/*]\033[0m Waiting for connections \033[34m[*/*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*~*]\033[0m Waiting for connections \033[34m[*~*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*\*]\033[0m Waiting for connections \033[34m[*\*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*|*]\033[0m Waiting for connections \033[34m[*|*]\033')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
       os.system('clear')
 
       sys.stdout.write('\033[34m[*/*]\33[0m Waiting for connections \033[34m[*/*]\33')
       sys.stdout.flush()
-      time.sleep(0.3)
+      time.sleep(0.2)
 
     # os.system('clear')
     # print("\033[34m[INFO]\033[0m New connection from: ")
