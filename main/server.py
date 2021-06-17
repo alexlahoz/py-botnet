@@ -2,9 +2,9 @@ from decorator import Decorator
 import socket, time, os, sys
 
 class Server():
-  def __init__(self, host, port):
-    self.host = host
-    self.port = port
+  def __init__(self):
+    self.host = '192.168.1.100'
+    self.port = 5555
     self.connections = []
     self.decorate = Decorator().decorate
 
@@ -13,7 +13,7 @@ class Server():
     server_socket.bind((self.host, self.port))
     server_socket.listen(5)
     os.system('clear')
-    print(
+    print (
       self.decorate('cyan', '[INFO]'), 'Server started on',
       self.decorate('blue', 'Host:'), self.decorate('purple', self.host),
       self.decorate('blue', 'Port:'), self.decorate('purple', self.port)
@@ -23,16 +23,16 @@ class Server():
     self.connections_handler(server_socket)
 
   def connections_handler(self, server_socket):
-    self.connection_receiver()
+    # self.connection_receiver()
 
     while True:
-      break
       conn, addr = server_socket.accept()
       print('New connection from:', addr)
 
-      data = conn.recv(2048).decode()
-      print('Received command:', data)
-      conn.send('Command feedback: '.encode())
+      # data = conn.recv(2048).decode()
+      # print('Received command:', data)
+      # conn.send('Command feedback: '.encode())
+      self.command_handler(conn)
 
   def connection_receiver(self):
     for i in range(5):
@@ -86,31 +86,29 @@ class Server():
     # command = input('\033[0m \033[31m' + host + '\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m')
     # sys.stdout.write(command)
 
-  def command_handler(self):
-    pass
-    # command = conn.recv(2048).decode()
+  # def command_handler(self, conn):
+  #   data = conn.recv(2048).decode()
 
-    # if data == 'comando':
-      #   print('Comando recibido:', data)
-      #   conn.send('Retorno de comando'.encode())
+  #   if data == 'comando':
+  #       print('Comando recibido:', data)
+  #       conn.send('Retorno de comando'.encode())
 
-      # elif data == 'close':
-      #   print('Comando recibido:', data)
-      #   conn.send('close_conn'.encode())
-      #   # conn.send('Cerrando conexion'.encode())
-      #   break
+  #   elif data == 'close':
+  #     print('Comando recibido:', data)
+  #     conn.send('close_conn'.encode())
+  #     conn.send('Cerrando conexion'.encode())
 
-      # elif data == 'help':
-      #   print('Comando recibido:', data)
-      #   helper = ' \nComandos que puedes usar: \n - [close] Cierra la conexion con el servidor \n - [connect] Carga la conexion con el servidor'
-      #   conn.send(helper.encode())
+  #   elif data == 'help':
+  #     print('Comando recibido:', data)
+  #     helper = ' \nComandos que puedes usar: \n - [close] Cierra la conexion con el servidor \n - [connect] Carga la conexion con el servidor'
+  #     conn.send(helper.encode())
 
-      # elif data == 'connect':
-      #   print('Comando recibido:', data)
+  #   elif data == 'connect':
+  #     print('Comando recibido:', data)
 
-      # else:
-      #   print('No se recibio el comando esperado',)
-      #   conn.send('El comando recibido no existe'.encode())
+  #   else:
+  #     print('No se recibio el comando esperado',)
+  #     conn.send('El comando recibido no existe'.encode())
 
-server = Server('192.168.1.100', 5555)
+server = Server()
 server.start_server()
