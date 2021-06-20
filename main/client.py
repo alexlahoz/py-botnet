@@ -14,7 +14,7 @@ class Client():
     client_socket.setblocking(False)
 
     bot_name = (f'{self.host}-{time.time()}').encode('utf-8')
-    bot_name_header = f"{len(bot_name):<{10}}".encode('utf-8')
+    bot_name_header = (f'{len(bot_name):<{10}}').encode('utf-8')
     client_socket.send(bot_name_header + bot_name)
     self.send_message(client_socket, bot_name)
 
@@ -42,5 +42,5 @@ class Client():
 
           print(f'{username} > {message}')
 
-# client = Client()
-# client.connect_with_server()
+client = Client()
+client.connect_with_server()
