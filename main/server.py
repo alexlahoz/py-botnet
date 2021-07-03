@@ -23,7 +23,7 @@ class Server():
     self.connections_handler(server_socket)
 
   def connections_handler(self, server_socket):
-    # self.connection_receiver()
+    self.connection_receiver()
 
     while True:
       conn, addr = server_socket.accept()
