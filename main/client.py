@@ -11,14 +11,18 @@ class Client():
 
     # sock.setblocking(True) is equivalent to sock.settimeout(None)
     # sock.setblocking(False) is equivalent to sock.settimeout(0.0)
-    client_socket.setblocking(False)
+    # client_socket.setblocking(False)
 
+    while True:
+      bot_name = (f'{self.host}').encode('utf-8')
+      command = input(f'{bot_name} > ')
+      print(command)
+      client_socket.send(command)
+      data = client_socket.recv(2048).decode()
 
-    # bot_name = (f'{self.host}-{time.time()}').encode('utf-8')
-    # bot_name_header = (f'{len(bot_name):<{10}}').encode('utf-8')
-    # client_socket.send(bot_name_header + bot_name)
-    # self.send_message(client_socket, bot_name)
-
+      if data:
+        print(data)
+        client_socket.close()
 
   # def send_message(self, client_socket, bot_name):
   #   while True:

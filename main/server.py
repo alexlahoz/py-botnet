@@ -23,16 +23,16 @@ class Server():
     self.connections_handler(server_socket)
 
   def connections_handler(self, server_socket):
-    self.connection_receiver()
+    # self.connection_receiver()
 
     while True:
       conn, addr = server_socket.accept()
       print('New connection from:', addr)
 
-      # data = conn.recv(2048).decode()
-      # print('Received command:', data)
-      # conn.send('Command feedback: '.encode())
-      self.command_handler(conn)
+      data = conn.recv(2048).decode()
+      print('Received command:', data)
+      conn.send('Command feedback: hi'.encode())
+      # self.command_handler(conn)
 
   def connection_receiver(self):
     for i in range(5):
