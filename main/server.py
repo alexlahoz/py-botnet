@@ -17,7 +17,7 @@ class Server():
       self.decorate('cyan', '[INFO]'), 'Server started on',
       self.decorate('blue', 'Host:'), self.decorate('purple', self.host),
       self.decorate('blue', 'Port:'), self.decorate('purple', self.port)
-      # "\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m"
+      "\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m"
     )
     time.sleep(2)
     self.connections_handler(server_socket)
@@ -78,37 +78,37 @@ class Server():
       sys.stdout.flush()
       time.sleep(0.2)
 
-    # os.system('clear')
-    # print("\033[34m[INFO]\033[0m New connection from: ")
-    # time.sleep(2)
+    os.system('clear')
+    print("\033[34m[INFO]\033[0m New connection from: ")
+    time.sleep(2)
 
-    # host = '192.168.1.100'
-    # command = input('\033[0m \033[31m' + host + '\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m')
-    # sys.stdout.write(command)
+    host = '192.168.1.100'
+    command = input('\033[0m \033[31m' + host + '\033[35m /\033[0m \033[36mhome\033[0m\033[0m > \033[33m')
+    sys.stdout.write(command)
 
-  # def command_handler(self, conn):
-  #   data = conn.recv(2048).decode()
+  def command_handler(self, conn):
+    data = conn.recv(2048).decode()
 
-  #   if data == 'comando':
-  #       print('Comando recibido:', data)
-  #       conn.send('Retorno de comando'.encode())
+    if data == 'comando':
+        print('Comando recibido:', data)
+        conn.send('Retorno de comando'.encode())
 
-  #   elif data == 'close':
-  #     print('Comando recibido:', data)
-  #     conn.send('close_conn'.encode())
-  #     conn.send('Cerrando conexion'.encode())
+    elif data == 'close':
+      print('Comando recibido:', data)
+      conn.send('close_conn'.encode())
+      conn.send('Cerrando conexion'.encode())
 
-  #   elif data == 'help':
-  #     print('Comando recibido:', data)
-  #     helper = ' \nComandos que puedes usar: \n - [close] Cierra la conexion con el servidor \n - [connect] Carga la conexion con el servidor'
-  #     conn.send(helper.encode())
+    elif data == 'help':
+      print('Comando recibido:', data)
+      helper = ' \nComandos que puedes usar: \n - [close] Cierra la conexion con el servidor \n - [connect] Carga la conexion con el servidor'
+      conn.send(helper.encode())
 
-  #   elif data == 'connect':
-  #     print('Comando recibido:', data)
+    elif data == 'connect':
+      print('Comando recibido:', data)
 
-  #   else:
-  #     print('No se recibio el comando esperado',)
-  #     conn.send('El comando recibido no existe'.encode())
+    else:
+      print('No se recibio el comando esperado',)
+      conn.send('El comando recibido no existe'.encode())
 
 server = Server()
 server.start_server()
